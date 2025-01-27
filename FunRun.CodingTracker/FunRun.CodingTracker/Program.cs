@@ -13,7 +13,7 @@ var host = Host.CreateDefaultBuilder(args)
    .ConfigureServices((context, services) =>
    {
        var configuration = context.Configuration;
-       string connectionString = configuration.GetConnectionString("DefaultConnection")!;
+       string connectionString = configuration.GetConnectionString("SQLiteConnection")!;
        services.AddSingleton(provider => new SQLiteConnectionFactory(connectionString));
        services.AddScoped<IDbConnection>(provider =>
         {
@@ -35,8 +35,9 @@ var host = Host.CreateDefaultBuilder(args)
 
     }).Build();
 
+
 var init = host.Services.GetRequiredService<SQLiteConnectionFactory>();
-init.InitializeDatabase();    
+init.InitializeDatabase();
 
 var app = host.Services.GetRequiredService<CodingTrackerApp>();
 await app.RunApp();
