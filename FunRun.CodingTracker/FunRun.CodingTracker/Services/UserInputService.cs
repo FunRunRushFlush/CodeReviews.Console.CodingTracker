@@ -23,7 +23,7 @@ public class UserInputService : IUserInputService
         DateTime sessionEnd = default;
         long Id = -1;
 
-        var startPrompt = AnsiConsole.Prompt(
+        AnsiConsole.Prompt(
              new TextPrompt<string>("[yellow]Enter the [green]Start Time[/] (format: yyyy-MM-dd HH:mm):[/]")
                  .Validate(input =>
                  {
@@ -34,7 +34,7 @@ public class UserInputService : IUserInputService
                      return ValidationResult.Success();
                  }));
 
-        var endPrompt = AnsiConsole.Prompt(
+        AnsiConsole.Prompt(
             new TextPrompt<string>("[yellow]Enter the [green]End Time[/] (format: yyyy-MM-dd HH:mm):[/]")
                 .Validate(input =>
                 {
